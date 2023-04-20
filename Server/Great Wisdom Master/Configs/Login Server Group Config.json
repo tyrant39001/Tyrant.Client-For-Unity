@@ -1,0 +1,25 @@
+{
+  "All": {
+    "ProjectName": "GreatWisdom",
+    "ServerGroupName": "登录",
+    "MonitorIP": "127.0.0.1",
+    "MonitorPort": 8498,
+    "PerformanceKey": "default"
+  },
+  "Master": {
+    "MasterForClientIp": "127.0.0.1",
+    "MasterForClientPort": 9688
+  },
+  "AccountBased": {
+    "DbConfigKey" : "default"
+  },
+  "Gate": {
+    "GateForClientIp": "127.0.0.1",
+    "GateForClientPort": 8688
+  },
+  "Log": {
+    "DbConfigKey": "default",
+    "MaxLogLengthOfDataTable": 100000
+  },
+  "Attribute": "BelongToLoginServerGroup"
+}

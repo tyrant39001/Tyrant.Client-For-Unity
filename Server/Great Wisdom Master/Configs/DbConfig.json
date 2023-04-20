@@ -1,0 +1,14 @@
+[
+  {
+    "Key": "default",
+    "DbConfig": {
+      "Host": "127.0.0.1",
+      "Port": 3306,
+      "DbName": "GreatWisdom",
+      "UserForBusiness": "root",
+      "PasswordForBusiness": "root",
+      "UserForMigration": "root",
+      "PasswordForMigration": "root"
+    }
+  }
+]
