@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="Tyrant.EntityFrameworkCore.MySql.Extension" Version="1.0.0" />
-    <PackageReference Include="Tyrant.Server" Version="1.2.3" />
+    <PackageReference Include="Tyrant.Server" Version="1.2.4" />
   </ItemGroup>
 
   <ItemGroup>

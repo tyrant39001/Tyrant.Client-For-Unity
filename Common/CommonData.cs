@@ -1,4 +1,5 @@
-﻿using Tyrant.GameCore.Net;
+﻿using System;
+using Tyrant.GameCore.Net;
 
 namespace Great_Wisdom_Common
 {
@@ -23,5 +24,25 @@ namespace Great_Wisdom_Common
     public class ReturnDataAfterLogin : LoginReturnToClient
     {
         public string Name { get; set; }
+    }
+
+    public class CreateRoomParam : RPCMapParamExtra
+    {
+        /// <summary>
+        /// 定义索引，例如：1为新手村，2为某某镇
+        /// </summary>
+        public int MapIndex { get; set; }
+        public string Password { get; set; }
+        public string Desc { get; set; }
+        public bool IsPublic { get; set; }
+        public string Creater { get; set; }
+    }
+
+    public class EnterRoomParam : RPCMapParamExtra
+    {
+        /// <summary>
+        /// 地图实例索引等价于房间实例索引
+        /// </summary>
+        public Guid MapInstanceId { get; set; }
     }
 }

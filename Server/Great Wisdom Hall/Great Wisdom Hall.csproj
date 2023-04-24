@@ -11,10 +11,11 @@
   </PropertyGroup>
 	
   <ItemGroup>
-	<PackageReference Include="Tyrant.Server" Version="1.2.3" />
+	<PackageReference Include="Tyrant.Server" Version="1.2.4" />
   </ItemGroup>
 
   <ItemGroup>
+	<ProjectReference Include="..\..\Common\Great Wisdom Common.csproj" />
 	<ProjectReference Include="..\Account Moudle\Account Module.csproj" />
   </ItemGroup>
 	

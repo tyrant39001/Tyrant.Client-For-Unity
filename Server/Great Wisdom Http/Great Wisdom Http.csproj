@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-	<PackageReference Include="Tyrant.Server" Version="1.2.3" />
+	<PackageReference Include="Tyrant.Server" Version="1.2.4" />
   </ItemGroup>
 
   <ItemGroup>

@@ -136,7 +136,7 @@ publish/
 # NuGet Packages
 *.nupkg
 # The packages folder can be ignored because of Package Restore
-**/packages/*
+# **/packages/*
 # except build/, which is used as an MSBuild target.
 !**/packages/build/
 # Uncomment if necessary however generally it will be regenerated when needed
@@ -193,14 +193,3 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
-
-# Unity
-Library/
-obj/
-Temp/
-/Game/Client/Tyrant For Unity/*.csproj
-/Game/Client/Tyrant For Unity/*.sln
-*.vsps
-/Game/Server/Tests/Start Brilliant Server.vbs
-/Game/Server/Tyrant.Server.MonitorBlazor.zip
-/push packages - ¸±±¾.bat

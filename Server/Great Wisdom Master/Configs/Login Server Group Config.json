@@ -11,7 +11,7 @@
     "MasterForClientPort": 9688
   },
   "AccountBased": {
-    "DbConfigKey" : "default"
+    "DbConfigKey": "default"
   },
   "Gate": {
     "GateForClientIp": "127.0.0.1",
