@@ -11,6 +11,7 @@ using Tyrant.GameCore.Data;
 using Tyrant.GameCore.Net;
 using UnityEngine;
 using UnityEngine.UI;
+using static Codice.CM.WorkspaceServer.WorkspaceTreeDataStore;
 
 public class RoomsListUI : MonoBehaviour
 {
@@ -22,10 +23,24 @@ public class RoomsListUI : MonoBehaviour
     private Button btn_PrevPage;
     [SerializeField]
     private Button btn_NextPage;
+    [SerializeField]
+    private Button btn_JoinRoom;
+
+    private ToggleGroup toggleGroup;
 
     private int currentPage = 0;
     private void Awake()
     {
+        toggleGroup = content.GetComponent<ToggleGroup>();
+        if (toggleGroup == null)
+            toggleGroup = content.gameObject.AddComponent<ToggleGroup>();
+        btn_JoinRoom.interactable = toggleGroup.AnyTogglesOn();
+
+        btn_PrevPage.interactable = false;
+        btn_PrevPage.onClick.AddListener(() => GetList(--currentPage));
+        btn_NextPage.interactable = false;
+        btn_NextPage.onClick.AddListener(() => GetList(++currentPage));
+
         GetList(currentPage);
     }
 
@@ -37,12 +52,30 @@ public class RoomsListUI : MonoBehaviour
             await ModelMessageBox.ShowAsync(config.MessageBoxPrefab, "", $"获取房间列表失败，错误：{result.Result}", MessageBoxButton.OK);
         else
         {
+            currentPage = result.CurrentPage;
+            btn_PrevPage.interactable = currentPage > 0;
+            btn_NextPage.interactable = currentPage < result.TotalPages - 1;
+            foreach (Transform child in content.transform)
+            {
+                if (child != null)
+                    Destroy(child.gameObject);
+            }
             foreach (var roomInfo in result.RoomInfos)
             {
                 var go = Instantiate(roomInfoPrefab);
-                go.transform.parent = content;
+                var toggle = go.GetComponent<Toggle>();
+                toggle.onValueChanged.AddListener((isSelected) =>
+                {
+                    if (isSelected)
+                    {
+                        btn_JoinRoom.interactable = true;
+
+                    }
+                });
+                toggle.group = toggleGroup;
+                go.transform.SetParent(content, false);
                 var text = go.GetComponentInChildren<Text>();
-                text.text = $"地图:{roomInfo.MapIndex} {(roomInfo.NeedPassword ? "有" : "无")}密码 人数:{roomInfo.CurrentPlayers} 创建者:{roomInfo.Creater} {roomInfo.Desc}";
+                text.text = $"地图:{roomInfo.MapIndex} {(roomInfo.NeedPassword ? "有" : "无")}密码 人数:{roomInfo.CurrentPlayers} 创建者:{roomInfo.Creater} 描述:{roomInfo.Desc}";
             }
         }
     }

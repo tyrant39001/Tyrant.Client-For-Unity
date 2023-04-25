@@ -38,17 +38,35 @@ public class WorldServer : WorldServerBase
     public void GetRoomsList(C2S_GetRoomsList arg)
     {
         Tyrant.GameCore.Debug.Output("GetRoomsList On World");
-        var mapDatas = GetMapInfos().Skip(arg.PageIndex * ItemsCountPerPageInRoomsList).Take(ItemsCountPerPageInRoomsList).ToArray();
-        arg.DoReturn(new C2S_GetRoomsList.Return { RoomInfos = mapDatas.Select(i => new RoomInfo
+        var allMapDatas = GetMapInfos().ToArray();
+        var currentPage = arg.PageIndex;
+        var totalPages = (int)Math.Ceiling(((float)allMapDatas.Length) / ItemsCountPerPageInRoomsList); 
+        var skipCount = currentPage * ItemsCountPerPageInRoomsList;
+        IEnumerable<(MapData, int)> mapDatas = null;
+        if (allMapDatas.Length <= skipCount)
+        {
+            currentPage = totalPages - 1;
+            mapDatas = allMapDatas.TakeLast(ItemsCountPerPageInRoomsList);
+        }
+        else
+            mapDatas = allMapDatas.Skip(arg.PageIndex * ItemsCountPerPageInRoomsList).Take(ItemsCountPerPageInRoomsList);
+        arg.DoReturn(new C2S_GetRoomsList.Return
             {
-                MapIndex = i.MapIndex,
-                NeedPassword = !string.IsNullOrEmpty(i.Password),
-                Desc = i.Desc,
-                Creater = i.Creater,
-            }).ToArray() });
+                CurrentPage = currentPage,
+                TotalPages = totalPages,
+                RoomInfos = mapDatas.Select(i => new RoomInfo
+                    {
+                        InstanceId = i.Item1.MapId,
+                        MapIndex = i.Item1.MapIndex,
+                        NeedPassword = !string.IsNullOrEmpty(i.Item1.Password),
+                        Desc = i.Item1.Desc,
+                        Creater = i.Item1.Creater,
+                        CurrentPlayers = i.Item2,
+                }).ToArray()
+            });
     }
 
-    private IEnumerable<MapData> GetMapInfos()
+    private IEnumerable<(MapData, int)> GetMapInfos()
     {
         foreach (var serverInfo in MapHallServerds.Where(i => !i.Invalid))
         {
@@ -57,7 +75,7 @@ public class WorldServer : WorldServerBase
                 if (mapInfo == null)
                     continue;
                 if (mapInfo.MapData is MapData mapData && mapData.IsPublic)
-                    yield return mapData;
+                    yield return (mapData, mapInfo.PlayerNums);
             }
         }
     }

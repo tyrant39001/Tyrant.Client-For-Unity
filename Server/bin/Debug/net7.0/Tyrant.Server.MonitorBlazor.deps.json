@@ -10,7 +10,7 @@
         "dependencies": {
           "BootstrapBlazor": "7.5.0",
           "BootstrapBlazor.FontAwesome": "7.3.0",
-          "Tyrant.Server": "1.2.4"
+          "Tyrant.Server": "1.2.5"
         },
         "runtime": {
           "Tyrant.Server.MonitorBlazor.dll": {}
@@ -471,7 +471,7 @@
           "Tyrant.GameCore.dll": {}
         }
       },
-      "Tyrant.Server/1.2.4": {
+      "Tyrant.Server/1.2.5": {
         "dependencies": {
           "HPSocket.Net": "5.8.5.2",
           "Microsoft.CodeAnalysis.CSharp": "4.0.1",
@@ -872,7 +872,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Tyrant.Server/1.2.4": {
+    "Tyrant.Server/1.2.5": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
