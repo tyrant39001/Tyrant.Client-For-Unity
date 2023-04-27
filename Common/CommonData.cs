@@ -43,6 +43,6 @@ namespace Great_Wisdom_Common
         /// <summary>
         /// 地图实例索引等价于房间实例索引
         /// </summary>
-        public Guid MapInstanceId { get; set; }
+        public Guid RoomInstanceId { get; set; }
     }
 }

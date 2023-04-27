@@ -35,6 +35,7 @@ public class RoomsListUI : MonoBehaviour
         if (toggleGroup == null)
             toggleGroup = content.gameObject.AddComponent<ToggleGroup>();
         btn_JoinRoom.interactable = toggleGroup.AnyTogglesOn();
+        btn_JoinRoom.onClick.AddListener(JoinRoom);
 
         btn_PrevPage.interactable = false;
         btn_PrevPage.onClick.AddListener(() => GetList(--currentPage));
@@ -44,6 +45,7 @@ public class RoomsListUI : MonoBehaviour
         GetList(currentPage);
     }
 
+    private RoomInfo curSelectedRoomInfo;
     private async void GetList(int pageIndex)
     {
         var config = await Config.Instance;
@@ -69,7 +71,7 @@ public class RoomsListUI : MonoBehaviour
                     if (isSelected)
                     {
                         btn_JoinRoom.interactable = true;
-
+                        curSelectedRoomInfo = roomInfo;
                     }
                 });
                 toggle.group = toggleGroup;
@@ -78,5 +80,19 @@ public class RoomsListUI : MonoBehaviour
                 text.text = $"地图:{roomInfo.MapIndex} {(roomInfo.NeedPassword ? "有" : "无")}密码 人数:{roomInfo.CurrentPlayers} 创建者:{roomInfo.Creater} 描述:{roomInfo.Desc}";
             }
         }
+    }
+
+    private async void JoinRoom()
+    {
+        if (curSelectedRoomInfo == null)
+            UnityEngine.Debug.LogWarning("join room button clicked, but current selected roomInfo is null");
+
+        var config = await Config.Instance;
+        var result = await LoadingBox.ShowAsync(config.LoadingBoxPrefab, "正在加入房间",
+            Client.MainClient.EnterMapAsync(0, new EnterRoomParam { RoomInstanceId = curSelectedRoomInfo.InstanceId }));
+        if (result.Result != RPCError.OK)
+            await ModelMessageBox.ShowAsync(config.MessageBoxPrefab, "", $"加入房间失败，错误：{result.Result}", MessageBoxButton.OK);
+        else
+            UnityEngine.Debug.Log("join room succeed;");
     }
 }

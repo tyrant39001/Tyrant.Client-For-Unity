@@ -24,10 +24,4 @@ namespace Great_Wisdom_Common
         public string Creater { get; set; }
         public int CurrentPlayers { get; set; }
     }
-
-    [RPCParameter(IsConcurrent = true)]
-    public class C2S_JoinRoom : RPCAuxParameterWithDefaultReturn<C2S_JoinRoom>
-    {
-        public Guid InstanceId { get; set; }
-    }
 }

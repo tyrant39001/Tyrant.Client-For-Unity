@@ -22,9 +22,9 @@ public class WorldServer : WorldServerBase
             return serverInfoManager.CreateOnMinPressureInstance();
         else if (serverInfoManager.ExEnterMapParamData is EnterRoomParam enterRoomParam) // 进入房间
         {
-            var result = serverInfoManager.GetMapInfoWithId(enterRoomParam.MapInstanceId);
+            var result = serverInfoManager.GetMapInfoWithId(enterRoomParam.RoomInstanceId);
             if (result == null)
-                throw new InvalidDataException($"can not find room id {enterRoomParam.MapInstanceId} when enter room");
+                throw new InvalidDataException($"can not find room id {enterRoomParam.RoomInstanceId} when enter room");
             return result;
         }
         else

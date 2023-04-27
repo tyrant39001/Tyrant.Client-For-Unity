@@ -100,8 +100,6 @@ public class LoginUI : MonoBehaviour
                         msg = result.ToString();
                         break;
                 }
-
-                await ModelMessageBox.ShowAsync(config.MessageBoxPrefab, "", msg, MessageBoxButton.OK);
             }
         }
         catch (Exception e)

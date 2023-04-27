@@ -820,7 +820,6 @@ GameObject:
   - component: {fileID: 766241567}
   - component: {fileID: 766241566}
   - component: {fileID: 766241565}
-  - component: {fileID: 766241564}
   m_Layer: 5
   m_Name: JoinRoom
   m_TagString: Untagged
@@ -849,21 +848,6 @@ RectTransform:
   m_AnchoredPosition: {x: 21.900024, y: 12}
   m_SizeDelta: {x: 80, y: 30}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &766241564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 766241562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08b3704f400120846842cc6210ba21e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scene:
-    scenePath: Assets/Scenes/Hall.unity
-  loadSceneMode: 0
 --- !u!114 &766241565
 MonoBehaviour:
   m_ObjectHideFlags: 0
