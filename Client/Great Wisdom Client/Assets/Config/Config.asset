@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8e2c269e2c08a44495ed7a9896b7228, type: 3}
   m_Name: Config
   m_EditorClassIdentifier: 
-  ServerHost: 127.0.0.1
+  ServerHost: 39.105.158.237
   ServerPort: 9688
   MessageBoxPrefab: {fileID: 1135133196104600666, guid: 38c48df1535a66e43b7eba9778578bc3, type: 3}
   LoadingBoxPrefab: {fileID: 5268202373153822567, guid: 6ed838a5420e9d24693d6837ac9a3332, type: 3}

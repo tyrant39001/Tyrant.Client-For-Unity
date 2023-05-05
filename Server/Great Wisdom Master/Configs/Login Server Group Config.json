@@ -7,14 +7,14 @@
     "PerformanceKey": "default"
   },
   "Master": {
-    "MasterForClientIp": "127.0.0.1",
+    "MasterForClientIp": "39.105.158.237",
     "MasterForClientPort": 9688
   },
   "AccountBased": {
     "DbConfigKey": "default"
   },
   "Gate": {
-    "GateForClientIp": "127.0.0.1",
+    "GateForClientIp": "39.105.158.237",
     "GateForClientPort": 8688
   },
   "Log": {
