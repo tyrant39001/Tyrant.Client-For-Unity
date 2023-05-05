@@ -85,13 +85,28 @@ public class RoomsListUI : MonoBehaviour
     private async void JoinRoom()
     {
         if (curSelectedRoomInfo == null)
-            UnityEngine.Debug.LogWarning("join room button clicked, but current selected roomInfo is null");
+        {
+            UnityEngine.Debug.LogError("join room button clicked, but current selected roomInfo is null");
+            return;
+        }
 
         var config = await Config.Instance;
         var result = await LoadingBox.ShowAsync(config.LoadingBoxPrefab, "正在加入房间",
             Client.MainClient.EnterMapAsync(0, new EnterRoomParam { RoomInstanceId = curSelectedRoomInfo.InstanceId }));
         if (result.Result != RPCError.OK)
-            await ModelMessageBox.ShowAsync(config.MessageBoxPrefab, "", $"加入房间失败，错误：{result.Result}", MessageBoxButton.OK);
+        {
+            string msg;
+            switch (result.Result)
+            {
+                case RPCError.AlReadyInMap:
+                    msg = "已在该房间内";
+                    break;
+                default:
+                    msg = $"加入房间失败，错误：{result.Result}";
+                    break;
+            }
+            await ModelMessageBox.ShowAsync(config.MessageBoxPrefab, "", msg, MessageBoxButton.OK);
+        }
         else
             UnityEngine.Debug.Log("join room succeed;");
     }

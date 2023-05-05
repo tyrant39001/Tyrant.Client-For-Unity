@@ -1,11 +1,19 @@
 {
   "dependencies": {
-    "com.tyrant.tyrant.client": {
+    "com.tyrant.client": {
       "version": "file:Tyrant.Client",
       "depth": 0,
       "source": "embedded",
       "dependencies": {
-        "com.unity.ugui": "",
+        "com.unity.ugui": ""
+      }
+    },
+    "com.tyrant.server": {
+      "version": "file:Tyrant.Server",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.tyrant.client": "",
         "com.unity.nuget.newtonsoft-json": ""
       }
     },
