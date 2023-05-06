@@ -1,0 +1,1939 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Tyrant.GameCore</name>
+    </assembly>
+    <members>
+        <member name="T:Tyrant.GameCore.SubAutoSyncDataLayer">
+            <summary>
+            对AOT平台实例化<see cref="M:Tyrant.GameCore.Data.AutoSyncDataLayer.SetProperty``1(``0@,``0,System.String)"/>泛型方法
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.DataBinding.BindableProperty">
+            <summary>
+            支持数据绑定的属性
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.DataBinding.BindableProperty.Name">
+            <summary>
+            属性名称
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.DataBinding.BindableProperty.FullName">
+            <summary>
+            属性全名称。包括拥有者的类型。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.DataBinding.BindableProperty.PropertyType">
+            <summary>
+            属性类型
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.DataBinding.BindableProperty.OwnerType">
+            <summary>
+            拥有者类型
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.DataBinding.BindableProperty.Tag">
+            <summary>
+            附属数据，可为任意类型
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.DataBinding.BindableProperty.IsVirtualProperty">
+            <summary>
+            是否是虚拟属性。通过方法<see cref="M:Tyrant.GameCore.DataBinding.BindableProperty.CreateVirtualProperty(System.String,System.Type,System.Type,System.Boolean,Tyrant.GameCore.DataBinding.BindablePropertyAttibute[])"/>创建的属性为虚拟属性
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.DataBinding.BindableProperty.CanGetValue">
+            <summary>
+            此属性是否可以获取值
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.DataBinding.BindableProperty.CanSetValue">
+            <summary>
+            此属性是否可以设置值
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.BindableProperty.#ctor">
+            <summary>
+            基础代码结构，没有直接使用的价值。若要创建此类实例请调用以“Create”开头的静态方法
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.BindableProperty.CreateVirtualProperty(System.String,System.Type,System.Type,System.Boolean,Tyrant.GameCore.DataBinding.BindablePropertyAttibute[])">
+            <summary>
+            创建虚拟属性。虚拟属性的值储存在该对象内部.
+            </summary>
+            <param name="propertyName">属性名称</param>
+            <param name="propertyType">属性类型</param>
+            <param name="ownerType">拥有者类型</param>
+            <param name="isOverrideWhenExit">当存在该属性时，是否覆盖。默认值为true</param>
+            <param name="attibutes">附加特性</param>
+            <returns>属性实例</returns>
+            <exception cref="T:System.ArgumentNullException">propertyType为空引用或ownerType为空引用</exception>
+            <exception cref="T:System.ArgumentException">propertyName为空引用或空字符串或ownerType不是引用类型</exception>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.BindableProperty.CreateVirtualProperty``1(System.String,System.Type,System.Type,System.Boolean,Tyrant.GameCore.DataBinding.BindablePropertyAttibute[])">
+            <summary>
+            创建虚拟属性。虚拟属性的值储存在该对象内部.
+            </summary>
+            <typeparam name="T">本类或子类型</typeparam>
+            <param name="propertyName">属性名称</param>
+            <param name="propertyType">属性类型</param>
+            <param name="ownerType">拥有者类型</param>
+            <param name="isOverrideWhenExit">当存在该属性时，是否覆盖。默认值为true</param>
+            <param name="attibutes">附加特性</param>
+            <returns>属性实例</returns>
+            <exception cref="T:System.ArgumentNullException">propertyType为空引用或ownerType为空引用</exception>
+            <exception cref="T:System.ArgumentException">propertyName为空引用或空字符串或ownerType不是引用类型</exception>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.BindableProperty.CreateTargetLogicalProperty(System.String,System.Type,System.Type,System.Action{System.Object,System.Object},System.Func{System.Object,System.Object},System.Boolean,Tyrant.GameCore.DataBinding.BindablePropertyAttibute[])">
+            <summary>
+            创建逻辑属性。逻辑属性使用回调来获取值或设置值。逻辑属性用于为绑定目标（一般情况下为UI控件对象）创建支持数据绑定的属性。
+            </summary>
+            <param name="propertyName">属性名称</param>
+            <param name="propertyType">属性类型</param>
+            <param name="ownerType">拥有者类型</param>
+            <param name="setValueCallback">设置值回调，不可为null</param>
+            <param name="getValueCallback">获取值回调，可为null</param>
+            <param name="isOverrideWhenExit">当存在该属性时，是否覆盖。默认值为true</param>
+            <param name="attibutes">附加特性</param>
+            <returns>属性实例</returns>
+            <exception cref="T:System.ArgumentNullException">propertyType为空引用或ownerType为空引用或setValueCallback为空引用</exception>
+            <exception cref="T:System.ArgumentException">propertyName为空引用或空字符串或ownerType不是引用类型</exception>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.BindableProperty.CreateTargetLogicalProperty``1(System.String,System.Type,System.Type,System.Action{System.Object,System.Object},System.Func{System.Object,System.Object},System.Boolean,Tyrant.GameCore.DataBinding.BindablePropertyAttibute[])">
+            <summary>
+            创建逻辑属性。逻辑属性使用回调来获取值或设置值。逻辑属性用于为绑定目标（一般情况下为UI控件对象）创建支持数据绑定的属性。
+            </summary>
+            <typeparam name="T">本类或子类型</typeparam>
+            <param name="propertyName">属性名称</param>
+            <param name="propertyType">属性类型</param>
+            <param name="ownerType">拥有者类型</param>
+            <param name="setValueCallback">设置值回调，不可为null</param>
+            <param name="getValueCallback">获取值回调，可为null</param>
+            <param name="isOverrideWhenExit">当存在该属性时，是否覆盖。默认值为true</param>
+            <param name="attibutes">附加特性</param>
+            <returns>属性实例</returns>
+            <exception cref="T:System.ArgumentNullException">propertyType为空引用或ownerType为空引用或setValueCallback为空引用</exception>
+            <exception cref="T:System.ArgumentException">propertyName为空引用或空字符串或ownerType不是引用类型</exception>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.BindableProperty.OnSetOwnerType(System.Type)">
+            <summary>
+            在创建实例对象设置拥有者类型时会调用此方法。
+            </summary>
+            <param name="ownerType">拥有者类型</param>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.BindableProperty.OnSetPropertyType(System.Type)">
+            <summary>
+            在创建实例对象设置属性类型时会调用此方法。
+            </summary>
+            <param name="propertyType">属性类型</param>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.BindableProperty.GetValue(System.Object)">
+            <summary>
+            为指定拥有者实例获取此实例所表示属性的属性值
+            </summary>
+            <param name="ownerObject">拥有者实例</param>
+            <returns>属性值</returns>
+            <exception cref="T:System.NotSupportedException">此属性不为虚拟属性，但用构造函数创建此实例时getValueCallback参数为空引用</exception>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.BindableProperty.SetValue(System.Object,System.Object)">
+            <summary>
+            为指定拥有者实例设置属性值
+            </summary>
+            <param name="ownerObject">拥有者实例</param>
+            <param name="propertyValue">属性值</param>
+            <exception cref="T:System.ArgumentNullException">ownerObject为空引用</exception>
+            <exception cref="T:System.ArgumentException">ownerObject的类型不是拥有者类型，或不是拥有者类型的子类</exception>
+            <exception cref="T:System.ArgumentException">propertyValue不为空引用，且它的类型不是属性类型，或不是属性类型的子类</exception>
+            <exception cref="T:System.ArgumentException">propertyValue为空引用，且PropertyType表示值类型</exception>
+            <exception cref="T:System.NotSupportedException">此属性不为虚拟属性，但用构造函数创建此实例时setValueCallback参数为空引用</exception>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.BindableProperty.GetProperties(System.Type)">
+            <summary>
+            获取指定类型所拥有的属性
+            </summary>
+            <param name="ownerType">指定的拥有者类型</param>
+            <returns>指定的拥有者类型所拥有的属性</returns>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.BindableProperty.GetProperty(System.Type,System.String)">
+            <summary>
+            获取指定类型所拥有的指定名称的属性
+            </summary>
+            <param name="ownerType">指定的拥有者类型</param>
+            <param name="propertyName">指定的属性名称</param>
+            <returns>指定类型所拥有的指定名称的属性</returns>
+        </member>
+        <member name="P:Tyrant.GameCore.DataBinding.BindableProperty.AllAttributes">
+            <summary>
+            获取所有特性
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.BindableProperty.GetAttributes``1">
+            <summary>
+            获取与指定泛型参数类型相同的特性
+            </summary>
+            <typeparam name="T">要获取的特性的类型</typeparam>
+            <returns>指定类型的特性的迭代器</returns>
+        </member>
+        <member name="T:Tyrant.GameCore.DataBinding.IDataBindingNode">
+            <summary>
+            数据绑定节点
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.DataBinding.IDataBindingNode.DataContextSelfOrParent">
+            <summary>
+            获取当前节点之上的DataContext对象，若获取不到或获取到的对象为空引用，则循环获取父节点之上的DataContext对象直到可以获取到DataContext对象并获取到的DataContext对象不为空或到达顶级节点
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.DataBinding.IDataBindingNode.DataContext">
+            <summary>
+            获取当前节点之上的DataContext对象
+            </summary>
+        </member>
+        <member name="E:Tyrant.GameCore.DataBinding.IDataBindingNode.TargetValueChanged">
+            <summary>
+            当启用反向绑定时，目标对象值变化时的事件
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.DataBinding.BindableObject">
+            <summary>
+            数据绑定数据源对象的基类
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.DataBinding.IDataBindingConverter">
+            <summary>
+            数据绑定转换器要实现的接口
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.IDataBindingConverter.ConvertTo(System.Object,System.Object,Tyrant.GameCore.DataBinding.DataBinding)">
+            <summary>
+            将源对象转换成目标类型的对象
+            </summary>
+            <param name="sourceValue">源属性值</param>
+            <param name="sourceObject">源对象</param>
+            <param name="dataBinding">对应的数据绑定对象</param>
+            <returns>转换后的目标类型的目标值</returns>
+        </member>
+        <member name="T:Tyrant.GameCore.DataBinding.DataBinding">
+            <summary>
+            数据绑定
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.DataBinding.ReLoadBindableTypes">
+            <summary>
+            重新加载数据绑定类型
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.DataBinding.DataBinding.SourceObject">
+            <summary>
+            获取或设置数据源对象
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.DataBinding.DataBinding.SourcePropertyPath">
+            <summary>
+            相对与数据源的属性路径，以“.”分隔
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.DataBinding.DataBinding.TargetObject">
+            <summary>
+            获取或设置目标对象
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.DataBinding.DataBinding.TargetProperty">
+            <summary>
+            获取或设置目标属性
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.DataBinding.DataBinding.Priority">
+            <summary>
+            获取或设置在同一上下文之下的优先级。数值越大越优先执行，数值相同的执行顺序不可预知。设置此属性并不会更新绑定。
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.DataBinding.Init(System.String,System.Object,System.String,System.Type,System.Boolean)">
+            <summary>
+            以数据源路径，目标对象，目标属性名称初始化此实例
+            </summary>
+            <param name="sourcePropertyPath">数据源路径</param>
+            <param name="targetObject">目标对象</param>
+            <param name="targetPropertyName">目标属性名称</param>
+            <param name="converterType">转换器的类型</param>
+            <param name="updateBinding">true表示更新数据绑定</param>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.DataBinding.Init(System.String,System.Object,Tyrant.GameCore.DataBinding.BindableProperty,System.Type,System.Boolean)">
+            <summary>
+            以数据源路径，目标对象，目标属性初始化此实例
+            </summary>
+            <param name="sourcePropertyPath">数据源路径</param>
+            <param name="targetObject">目标对象</param>
+            <param name="targetProperty">目标属性</param>
+            <param name="converterType">转换器的类型</param>
+            <param name="updateBinding">true表示更新数据绑定</param>
+        </member>
+        <member name="P:Tyrant.GameCore.DataBinding.DataBinding.ConverterType">
+            <summary>
+            获取或设置转换器的类型，此类型要求实现<see cref="T:Tyrant.GameCore.DataBinding.IDataBindingConverter"/>接口并具有公共无参构造函数
+            </summary>
+            <exception cref="T:System.ArgumentException">类型没有实现<see cref="T:Tyrant.GameCore.DataBinding.IDataBindingConverter"/>接口或没有公共无参构造函数</exception>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.DataBinding.UpdateBinding">
+            <summary>
+            强制更新数据绑定
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.DataBinding.Dispose">
+            <summary>
+            解除所有绑定关系。此操作不可恢复，此对象将没有再使用的意义。
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.DataBinding.IDataContextNode">
+            <summary>
+            数据绑定上下文节点
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.DataBinding.IDataContextNode.DataBindings">
+            <summary>
+            获取当前节点之上的所有DataBinding对象
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.DataBinding.IDataContextNode.AllChildNodesDataBinding">
+            <summary>
+            获取当前节点的所有不包含DataContext对象（即如果该子节点之上有DataContext对象，则跳过该子节点的所有子节点）的递归子节点（即包括子节点的子节点）之上的所有DataBinding对象，注意不包括当前节点。
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.DataBinding.DataContext">
+            <summary>
+            数据绑定上下文
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.DataBinding.DataContext.Value">
+            <summary>
+            获取或设置上下文内容
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.DataBinding.IItemsContainerNode">
+            <summary>
+            多项容器节点
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.IItemsContainerNode.InstantiateItemTemplate(System.Int32)">
+            <summary>
+            实例化项模版，并将实例化后的对象添加到当前节点的子节点中的指定索引处
+            </summary>
+            <param name="index">如果小于0或大于等于子节点的数量表示添加到末尾，否则表示插入到指定的索引处</param>
+            <returns>实例化后的对象</returns>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.IItemsContainerNode.SetChild(System.Object,System.Int32)">
+            <summary>
+            将指定的对象放置到当前节点的子节点中的指定索引处
+            </summary>
+            <param name="item">指定的对象</param>>
+            <param name="index">如果小于0或大于等于子节点的数量表示添加到末尾，否则表示插入到指定的索引处</param>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.IItemsContainerNode.DestroyItems(System.Collections.Generic.IEnumerable{System.Object})">
+            <summary>
+            销毁指定的对象
+            </summary>
+            <param name="items">指定对象的集合</param>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.IItemsContainerNode.DetachAllChildren">
+            <summary>
+            移除当前节点的所有子节点，但是不销毁它们
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.IItemsContainerNode.DestoryAllChildren">
+            <summary>
+            销毁所有子节点
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.IItemsContainerNode.GetDataContext(System.Object)">
+            <summary>
+            获取指定对象上的所有DataContext对象。如果指定对象上不存在DataContext对象，则创建一个
+            </summary>
+            <param name="item">指定的对象</param>
+            <returns>所有DataContext集合</returns>
+        </member>
+        <member name="T:Tyrant.GameCore.DataBinding.ItemsContainer">
+            <summary>
+            多项容器。为数据源集合中的每一个数据项生成对应的表现项，并使数据项和表现项一一对应
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.DataBinding.ItemsContainer.ItemTemplate">
+            <summary>
+            项模版。容器中的项将使用此对象进行实例化。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.DataBinding.ItemsContainer.SourceCollection">
+            <summary>
+            数据源集合，其中每一项都不能为空引用
+            </summary>
+            <exception cref="T:System.ArgumentException">数据源集合其中一项为空引用</exception>
+        </member>
+        <member name="E:Tyrant.GameCore.DataBinding.ItemsContainer.UpdateItemsFinished">
+            <summary>
+            当所有项更新完毕时触发此事件
+            </summary>
+        </member>
+        <member name="E:Tyrant.GameCore.DataBinding.ItemsContainer.ItemCreated">
+            <summary>
+            每当项被创建时触发此事件
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.ItemsContainer.GetBindedItemFromData(System.Object)">
+            <summary>
+            根据数据对象获取其对应的项
+            </summary>
+            <param name="dataItem">数据对象</param>
+            <returns>容器中的项</returns>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.ItemsContainer.Dispose">
+            <summary>
+            解除所有绑定关系。此操作不可恢复，此对象将没有再使用的意义。
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.DataBinding.NotifyCollectionChangedEventArgs">
+            <summary>
+            可通知变化的集合的相关事件的参数。没有直接使用的价值。
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.DataBinding.NotifyCollection`1">
+            <summary>
+            可通知变化的集合。必须在线程安全的环境下使用。
+            </summary>
+            <typeparam name="T">集合中项的类型</typeparam>
+        </member>
+        <member name="E:Tyrant.GameCore.DataBinding.NotifyCollection`1.ItemAdded">
+            <summary>
+            添加项的事件，第一个参数为集合实例，第二个参数为索引，第三个参数为添加的项
+            </summary>
+        </member>
+        <member name="E:Tyrant.GameCore.DataBinding.NotifyCollection`1.ItemRemoved">
+            <summary>
+            移除项的事件，第一个参数为集合实例，第二个参数为索引，第三个参数为移除的项
+            </summary>
+        </member>
+        <member name="E:Tyrant.GameCore.DataBinding.NotifyCollection`1.ItemSeted">
+            <summary>
+            项被设置新的对象时的事件。第一个参数为集合实例，第二个参数为索引，第三个参数为该索引处的旧值，第四个参数为设置的新值
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.NotifyCollection`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            将指定集合中的每一项添加到本集合中
+            </summary>
+            <param name="collection">指定的集合</param>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.NotifyCollection`1.Move(System.Int32,System.Int32)">
+            <summary>
+            将指定的集中的2个项交换位置
+            </summary>
+            <param name="oldIndex">第一个项的索引</param>
+            <param name="newIndex">第二个项的索引</param>
+        </member>
+        <member name="T:Tyrant.GameCore.DataBinding.BindablePropertyLinker`1">
+            <summary>
+            将<see cref="T:Tyrant.GameCore.DataBinding.BindableProperty"/>实例指定逻辑连接到虚拟项的连接器。通过类<see cref="T:Tyrant.GameCore.DataBinding.NotifyCollection`1"/>的方法<see cref="M:Tyrant.GameCore.DataBinding.NotifyCollection`1.LinkBindablePropertyToVirtualItem(Tyrant.GameCore.DataBinding.BindableProperty,System.Object,Tyrant.GameCore.DataBinding.NotifyCollection{`0}[],System.Func{`0,System.Boolean},System.Collections.Generic.IEnumerable{Tyrant.GameCore.DataBinding.BindableProperty},System.Func{System.Collections.Generic.IEnumerable{`0}[],System.Object[],`0},System.Object[])"/>获取实例。
+            </summary>
+            <typeparam name="T"></typeparam>
+            <remarks>
+            此方法的运行逻辑为将第三个参数数组中的每一个NotifyCollection按第四个参数指定的委托做筛选，同时监视筛选结果中每一项的可绑定属性值的变化，若第四个参数指定的数组包含变化的可绑定属性，则执行第五个参数指定的委托，该委托的第一个参数为筛选结果组成的迭代器，该委托要求返回一个T实例，这个T实例就是要连接的虚拟项，然后将T对象赋值给第一个参数指定的BindableProperty，属性拥有者实例为第二个参数指定。同时监视第三个参数数组中的每一个NotifyCollection的添加项事件，以保证新添加的项也执行上述行为。当不需要连接时，应调用<see cref="M:Tyrant.GameCore.DataBinding.BindablePropertyLinker`1.Dispose"/>方法取消连接行为。应用场景举例：打造一把铁剑需要10块铁锭，UI需要显示背包和仓库中所有铁锭物品实例的数量的总和，当任何行为导致背包和仓库中铁锭物品的数量变化时，界面也会得到相应。
+            </remarks>
+        </member>
+        <member name="T:Tyrant.GameCore.DataBinding.IKeyInValueDictionary`1">
+            <summary>
+            <see cref="T:Tyrant.GameCore.DataBinding.KeyInValueDictionary`2"/>中TValue继承的接口，可以获取TKey
+            </summary>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="T:Tyrant.GameCore.DataBinding.KeyInValueDictionary`2">
+            <summary>
+            可从值中得到键的字典。必须在线程安全的环境下使用。
+            </summary>
+            <typeparam name="TKey">集合中键的类型</typeparam>
+            <typeparam name="TValue">集合中项的类型</typeparam>
+        </member>
+        <member name="E:Tyrant.GameCore.DataBinding.KeyInValueDictionary`2.Added">
+            <summary>
+            添加项时触发。
+            </summary>
+        </member>
+        <member name="E:Tyrant.GameCore.DataBinding.KeyInValueDictionary`2.Removed">
+            <summary>
+            移除项时触发
+            </summary>
+        </member>
+        <member name="E:Tyrant.GameCore.DataBinding.KeyInValueDictionary`2.Seted">
+            <summary>
+            替换项时触发。
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.KeyInValueDictionary`2.#ctor">
+            <summary>
+            使用键获取器创建新实例。
+            </summary>
+            <exception cref="T:System.ArgumentNullException">keyGetter为空引用并且<see cref="!:TValue"/>也没实现<see cref="T:Tyrant.GameCore.DataBinding.IKeyInValueDictionary`1"/>接口</exception>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.KeyInValueDictionary`2.#ctor(System.Func{`1,`0})">
+            <summary>
+            使用键获取器创建新实例。
+            </summary>
+            <param name="keyGetter">键获取器，传入项，返回键</param>
+            <exception cref="T:System.ArgumentNullException">keyGetter为空引用并且<see cref="!:TValue"/>也没实现<see cref="T:Tyrant.GameCore.DataBinding.IKeyInValueDictionary`1"/>接口</exception>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.KeyInValueDictionary`2.#ctor(System.Func{`1,`0},System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            使用键获取器和初始集合创建新实例。
+            </summary>
+            <param name="keyGetter">键获取器，传入项，返回键</param>
+            <param name="collection">初始集合</param>
+            <exception cref="T:System.ArgumentNullException">keyGetter为空引用并且<see cref="!:TValue"/>也没实现<see cref="T:Tyrant.GameCore.DataBinding.IKeyInValueDictionary`1"/>接口</exception>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.KeyInValueDictionary`2.Add(`1)">
+            <summary>
+            将指定项添加到集合中
+            </summary>
+            <param name="item">指定项</param>
+            <exception cref="T:System.ArgumentNullException">item为空引用</exception>
+            <exception cref="T:System.ArgumentException">已存在具有相同键的元素</exception>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.KeyInValueDictionary`2.AddRange(System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            将指定集合中的每一项添加到本集合中
+            </summary>
+            <param name="collection">指定的集合</param>
+        </member>
+        <member name="P:Tyrant.GameCore.DataBinding.KeyInValueDictionary`2.Item(`0)">
+            <summary>
+            根据键获取项
+            </summary>
+            <param name="key">指定的键</param>
+            <returns>与指定建对应的项</returns>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.KeyInValueDictionary`2.TryGetValue(`0,`1@)">
+            <summary>
+            根据键获取项
+            </summary>
+            <param name="key">指定的键</param>
+            <param name="item">与指定建对应的项</param>
+            <returns>true表示字典包含指定的键，false反之</returns>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.KeyInValueDictionary`2.Remove(`0)">
+            <summary>
+            移除指定键对应的项
+            </summary>
+            <param name="key">指定键</param>
+            <returns>true表示移除成功，false表示指定键不在字典中</returns>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.KeyInValueDictionary`2.Remove(`0,`1@)">
+            <summary>
+            移除指定键对应的项
+            </summary>
+            <param name="key">指定键</param>
+            <param name="item">与指定键对应的项</param>
+            <returns>true表示移除成功，false表示指定键不在字典中</returns>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.KeyInValueDictionary`2.Remove(`1)">
+            <summary>
+            移除指定的项
+            </summary>
+            <param name="value">定的项</param>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.KeyInValueDictionary`2.Remove(System.Func{`1,System.Boolean})">
+            <summary>
+            移除满足指定条件的项
+            </summary>
+            <param name="predicate">指定的条件</param>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.KeyInValueDictionary`2.RemoveAll">
+            <summary>
+            移除所有的项。此方法与<see cref="M:System.Collections.DictionaryBase.Clear"/>的区别是，前者对每一项都会调用<see cref="M:System.Collections.DictionaryBase.OnRemove(System.Object,System.Object)"/>与<see cref="M:System.Collections.DictionaryBase.OnRemoveComplete(System.Object,System.Object)"/>，而后者只调用一次<see cref="M:System.Collections.DictionaryBase.OnClear"/>与<see cref="M:System.Collections.DictionaryBase.OnClearComplete"/>
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.KeyInValueDictionary`2.GetKeyFromItem(`1)">
+            <summary>
+            从项中获取键
+            </summary>
+            <param name="item">指定的项</param>
+            <returns>指定项对应的键</returns>
+        </member>
+        <member name="M:Tyrant.GameCore.DataBinding.KeyInValueDictionaryView`2.Move(System.Int32,System.Int32)">
+            <summary>
+            将指定的集中的2个项交换位置
+            </summary>
+            <param name="oldIndex">第一个项的索引</param>
+            <param name="newIndex">第二个项的索引</param>
+        </member>
+        <member name="T:Tyrant.GameCore.Data.AccountData">
+            <summary>
+            账号数据基类
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.Data.MapData">
+            <summary>
+            地图数据，在创建地图时传输给HallServer的对应Map实例
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Data.MapData.MapId">
+            <summary>
+            地图实例唯一标识
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Data.MapData.MaxPlayerCount">
+            <summary>
+            最大玩家数量限制，小于或等于0为不限制。默认值为0
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.Data.AutoSyncDataLayer.SetProperty``1(``0@,``0,System.String)">
+            <summary>
+            设置属性变化（自动同步）
+            </summary>
+            <typeparam name="T">属性值类型</typeparam>
+            <param name="backingStore">返回属性值</param>
+            <param name="value">属性值</param>
+            <param name="propertyName">属性名称（默认值）</param>
+            <returns>属性变化返回ture，否则false</returns>
+        </member>
+        <member name="M:Tyrant.GameCore.Data.AutoSyncDataLayer.OnBeforeSynced(System.Boolean,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            在同步之前调用
+            </summary>
+            <param name="isAll">是否序列化所有属性</param>
+            <param name="propertyNames">要序列化的属性名称的迭代器</param>
+        </member>
+        <member name="T:Tyrant.GameCore.Data.ActorSyncData">
+            <summary>
+            Actor同步属性
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.Data.ServerGroupData">
+            <summary>
+            表示一个服务器组或大区的信息
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Data.ServerGroupData.Name">
+            <summary>
+            服务器或大区名称
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Data.ServerGroupData.Activated">
+            <summary>
+            是否可用
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.IDesignerDataEntity">
+            <summary>
+            策划数据类型需要实现的接口。
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.DataEntityTemplate`1">
+            <summary>
+            映射策划数据表的数据实体模版, 此类所有方法都不保证线程安全
+            </summary>
+            <typeparam name="TEntity">映射策划数据表的数据实体</typeparam>
+        </member>
+        <member name="M:Tyrant.GameCore.DataEntityTemplate`1.LoadDataInternal">
+            <summary>
+            加载模板类数据
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.DataEntityTemplate`1.GetAllDataAsync">
+            <summary>
+            获取指定数据模板类的所有数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tyrant.GameCore.DataEntityTemplate`1.GetDataAsync(System.Object[])">
+            <summary>
+            根据主键获取一个数据的异步方法
+            </summary>
+            <param name="keyValues">主键，多主键的顺序要符合对应Excel表主键列由左至右的顺序</param>
+            <returns></returns>
+        </member>
+        <member name="P:Tyrant.GameCore.DataEntityTemplate`1.Count">
+            <summary>
+            获取数据数量。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.ExcelSheetAttribute.SheetRelativePath">
+            <summary>
+            表对的相对路径(包括文件名)
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.ExcelSheetAttribute.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="sheetRelativePath">表对的相对路径(包括文件名)</param>
+        </member>
+        <member name="T:Tyrant.GameCore.DebugLevel">
+            <summary>
+            调试输出类别
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.Debug">
+            <summary>
+            输出调试信息
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Debug.debugConfigs">
+            <summary>
+            最低输出详细级别（Server通过Monitor设置同步，Client可代码设置）
+            </summary>
+        </member>
+        <member name="E:Tyrant.GameCore.Debug.DebugHandler">
+            <summary>
+            当有调试信息输出的时候触发，非线程安全
+            </summary>
+            <remarks>附加到此事件的处理程序发生的异常将被忽略</remarks>
+        </member>
+        <member name="E:Tyrant.GameCore.Debug.ExceptionHandler">
+            <summary>
+            当异常时触发，非线程安全
+            </summary>
+            <remarks>附加到此事件的处理程序发生的异常将被忽略</remarks>
+        </member>
+        <member name="M:Tyrant.GameCore.Debug.Output(System.String,Tyrant.GameCore.DebugLevel,Tyrant.GameCore.DebugDetailLevel,Tyrant.GameCore.DebugModule)">
+            <summary>
+            输出
+            </summary>
+            <param name="str">输出</param>
+            <param name="level">输出类别</param>
+            <param name="detailLevel">详细级别</param>
+            <param name="module">模块</param>
+        </member>
+        <member name="M:Tyrant.GameCore.Debug.OutputWarning(System.String,Tyrant.GameCore.DebugDetailLevel,Tyrant.GameCore.DebugModule)">
+            <summary>
+            警告输出
+            </summary>
+            <param name="str">输出</param>
+            <param name="detailLevel">详细级别</param>
+            <param name="module">模块</param>
+        </member>
+        <member name="M:Tyrant.GameCore.Debug.OutputError(System.String,Tyrant.GameCore.DebugDetailLevel,Tyrant.GameCore.DebugModule)">
+            <summary>
+            错误输出
+            </summary>
+            <param name="str">输出</param>
+            <param name="detailLevel">详细级别</param>
+            <param name="module">模块</param>
+        </member>
+        <member name="M:Tyrant.GameCore.Debug.OutputException(System.Exception,Tyrant.GameCore.DebugDetailLevel,Tyrant.GameCore.DebugModule)">
+            <summary>
+            异常输出
+            </summary>
+            <param name="e">异常信息</param>
+            <param name="detailLevel">详细级别</param>
+            <param name="module">模块</param>
+        </member>
+        <member name="M:Tyrant.GameCore.Debug.Output(System.Object,Tyrant.GameCore.DebugLevel,Tyrant.GameCore.DebugDetailLevel,Tyrant.GameCore.DebugModule)">
+            <summary>
+            输出
+            </summary>
+            <param name="obj">输出</param>
+            <param name="level">输出类别</param>
+            <param name="detailLevel">详细级别</param>
+            <param name="module">模块</param>
+        </member>
+        <member name="M:Tyrant.GameCore.Debug.OutputWarning(System.Object,Tyrant.GameCore.DebugDetailLevel,Tyrant.GameCore.DebugModule)">
+            <summary>
+            警告输出
+            </summary>
+            <param name="obj">输出</param>
+            <param name="detailLevel">详细级别</param>
+            <param name="module">模块</param>
+        </member>
+        <member name="M:Tyrant.GameCore.Debug.OutputError(System.Object,Tyrant.GameCore.DebugDetailLevel,Tyrant.GameCore.DebugModule)">
+            <summary>
+            错误输出
+            </summary>
+            <param name="obj">输出</param>
+            <param name="detailLevel">详细级别</param>
+            <param name="module">模块</param>
+        </member>
+        <member name="T:Tyrant.GameCore.GetDataStreamHandlerArgs">
+            <summary>
+            描述根据数据类型获取文件流的委托的参数
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.GetDataStreamHandlerArgs.DataEntityType">
+            <summary>
+            获取数据类型
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.GetDataStreamHandlerArgs.SheetRelativePath">
+            <summary>
+            获取数据类型对应的Sheetd相对路径(包括文件名)
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.DesignerDataLoader">
+            <summary>
+            策划数据加载器
+            </summary>
+        </member>
+        <member name="E:Tyrant.GameCore.DesignerDataLoader.GetDataStreamHandler">
+            <summary>
+            获取策划数据对应的数据流的事件
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.RPCAuxParameter`1">
+            <summary>
+            RPC消息基类
+            </summary>
+            <typeparam name="K">消息类型</typeparam>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.RPCAuxParameterReturn`2">
+            <summary>
+            带有返回值的RPC消息基类
+            </summary>
+            <typeparam name="K">消息类型</typeparam>
+            <typeparam name="R">返回值类型</typeparam>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.RPCAuxParameterReturn`2.Call(Tyrant.GameCore.Net.NetConnection,Tyrant.GameCore.Net.RPCParameter.FRPCTypeReturnCallBack{`1})">
+            <summary>
+            使用指定的网络连接，返回值回调调用此带有返回值的RPC
+            </summary>
+            <param name="connection">要调用此RPC的网络连接</param>
+            <param name="cb">返回值回调，在逻辑线程上触发</param>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.RPCAuxParameterReturn`2.CallAsync(Tyrant.GameCore.Net.NetTransmitter)">
+            <summary>
+            使用指定的网络连接异步调用此带有返回值的RPC
+            </summary>
+            <param name="conn">要调用此RPC的网络连接</param>
+            <returns>带有此RPC的返回值的任务</returns>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.RPCAuxParameterReturn`2.C2S_CallAsync(Tyrant.GameCore.Net.Client)">
+            <summary>
+            客户端到服务器的远程异步调用
+            </summary>
+            <returns>RPC返回值</returns>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.RPCAuxParameterReturn`2.C2S_HttpCallAsync(System.String,System.UInt16,System.Boolean)">
+            <summary>
+            客户端到服务器的Http协议的远程异步调用
+            </summary>
+            <param name="masterForClientIp">登录服务器组中Master进程为客户端连接使用的Ip</param>
+            <param name="masterForClientPort">登录服务器组中Master进程为客户端连接监听的端口</param>
+            <param name="security">true表示安全连接。默认值为false</param>
+            <returns>RPC返回值</returns>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.EClientSocketDisconnectType.Login">
+            <summary>
+            登录服务器组断开socket
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.EClientSocketDisconnectType.Game">
+            <summary>
+            游戏服务器组断开socket
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.EClientSocketDisconnectType.Other">
+            <summary>
+            其他服务器断开socket
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.Client.AccountId">
+            <summary>
+            获取账号索引，调用本类方法<see cref="M:Tyrant.GameCore.Net.Client.LoginAccount(System.String,System.UInt16,Tyrant.GameCore.Net.LoginAccountExtraParameter,System.UInt32)"/>后有效。
+            </summary>
+        </member>
+        <member name="E:Tyrant.GameCore.Net.Client.SameAccountLogined">
+            <summary>
+            相同账号登录
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.Client.OnUpdateThreadQuene">
+            <summary>
+            注册或登陆排队刷新函数事件
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.Client.OnUpdateRobotThreadQuene">
+            <summary>
+            注册或登陆排队刷新函数事件（给机器人用）
+            </summary>
+        </member>
+        <member name="E:Tyrant.GameCore.Net.Client.Disconnected">
+            <summary>
+            当连接断开时触发
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.Client.C2LAverageNetworkDelay">
+            <summary>
+            获取客户端与登录服务器的平均网络延迟
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.Client.C2SAverageNetworkDelay">
+            <summary>
+            获取客户端与服务器组的平均网络延迟
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.Client.SetMainClient(Tyrant.GameCore.Net.Client)">
+            <summary>
+            初始化客户端RPC实例。
+            </summary>
+        </member>
+        <member name="E:Tyrant.GameCore.Net.Client.ReceiveNetworkMessageHandler">
+            <summary>
+            当客户端接收到网络消息时或触发事件<seealso cref="E:Tyrant.GameCore.Net.Client.Disconnected"/>时在网络线程上触发此事件
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.Client.Disconnect">
+            <summary>
+            断开连接且不会触发<see cref="E:Tyrant.GameCore.Net.Client.Disconnected"/>事件
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.Client.RegistAccount(System.String,System.UInt16,System.String,Tyrant.GameCore.Net.RegistAccountParamExtra,System.UInt32)">
+            <summary>
+            注册账号消息
+            </summary>
+            <param name="masterForClientIp">登录服务器组中Master进程为客户端连接使用的Ip</param>
+            <param name="masterForClientPort">登录服务器组中Master进程为客户端连接监听的端口</param>
+            <param name="name">注册所需用户名</param>
+            <param name="extraParameters">注册消息额外参数</param>
+            <param name="timeOutMillisecond">超时时间，单位：毫秒，指定0为永不超时。默认值5000</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.Client.LoginAccount(System.String,System.UInt16,Tyrant.GameCore.Net.LoginAccountExtraParameter,System.UInt32)">
+            <summary>
+            登录
+            </summary>
+            <param name="masterForClientIp">登录服务器组中Master进程为客户端连接使用的Ip</param>
+            <param name="masterForClientPort">登录服务器组中Master进程为客户端连接监听的端口</param>
+            <param name="extraParameters">登录额外参数</param>
+            <param name="timeOutMillisecond">超时时间，单位：毫秒。指定0为永不超时。当<see cref="P:Tyrant.GameCore.Net.RPCExecManager.IsDebug"/>的值为<c>true</c>时，此值无效，永不超时。默认值为5000</param>
+            <returns>登录结果及返回数据</returns>
+            <exception cref="T:System.Exception">超时</exception>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.Client.EnterServerGroup(Tyrant.GameCore.Data.ServerGroupData)">
+            <summary>
+            进入指定的服务器组（或大区）
+            </summary>
+            <param name="server">要进入的服务器组数据（IP与端口等）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.Client.CreateRoleAsync(System.String,Tyrant.GameCore.Net.CreatePlayerExtraParameter)">
+            <summary>
+            创建角色
+            </summary>
+            <param name="roleName">角色名称</param>
+            <param name="createPlayerExtraParameter">扩展参数</param>
+            <returns>返回PlayerData数据</returns>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.Client.DeleteRoleAsync(System.UInt64)">
+            <summary>
+            删除角色
+            </summary>
+            <param name="roleIdToDelete">要删除的角色Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.Client.PlayerReady">
+            <summary>
+            通知服务器当前角色已进入准备好状态
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.Client.EnterMapAsync(System.UInt64,Tyrant.GameCore.Net.RPCMapParamExtra)">
+            <summary>
+            进入地图
+            </summary>
+            <param name="enterMapRoleId">要进入地图的角色Id。0表示使用默认角色</param>
+            <param name="exParamData">扩展参数</param>
+            <returns></returns>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.Client.InitActor">
+            <summary>
+            初始化Actor
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.Client.RemoveActor">
+            <summary>
+            删除Actor
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.Client.BeforeActorSyncDataChange">
+            <summary>
+            Actor同步属性变化前
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.Client.ActorSyncDataChanged">
+            <summary>
+            Actor同步属性变化
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.Client.SyncTriggerInvoked">
+            <summary>
+            一次性触发事件
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.ClientManager.Tyrant#GameCore#Net#IRPCCallBackExcuterProxy#Excute(System.Action,Tyrant.GameCore.Net.RPCReturnValue)">
+            <summary>
+            当客户端接收到网络消息时在网络线程上触发此事件
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.NetClient">
+            <summary>
+            表示网络连接的客户端
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.NetClient.RemoteIp">
+            <summary>
+            获取当前连接的远端IP地址
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.NetClient.RemotePort">
+            <summary>
+            获取当前连接的远端端口号
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.NetClient.ConnectAsync(System.String,System.UInt16,System.Action{Tyrant.GameCore.Net.NetClient,System.Exception},System.UInt32)">
+            <summary>
+            异步连接远端
+            </summary>
+            <param name="strHostIp">远端IP</param>
+            <param name="nPort">远端端口</param>
+            <param name="connectCallback">连接完成的回调</param>
+            <param name="timeOutMillisecond">超时时间，单位：毫秒。指定0为永不超时，默认值为3000</param>
+            <exception cref="T:System.InvalidOperationException">此实例正在连接中，或已连接到远端，或与远端断开连接</exception>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.TcpClient">
+            <summary>
+            Tcp连接客户端，不可重用。
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.FieldSerializer">
+            <summary>
+            属性序列化器，决定如何从流中读写属性值
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.IReaderWriter">
+            <summary>
+            属性读写器，决定如何读写属性的值
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.TypeDesc">
+            <summary>
+            表示一个类型序列化和反序列化的信息
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.TypeDesc.Members">
+            <summary>
+            获取所有应序列化或反序列化的属性名称
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.TypeDesc.IsCLRRuntimeType(System.Type)">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.TypeSerializer">
+            <summary>
+            类型序列化器。可查看指定类型的类型描述符。
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.TypeSerializer.GetTypeDescription(System.Type)">
+            <summary>
+            获取指定类型的类型描述符
+            </summary>
+            <param name="type">指定的类型</param>
+            <returns>描述一个类型的类型描述符</returns>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.HttpRequestTransmitter">
+            <summary>
+            Http请求传输器
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.HttpRequestTransmitter.CanHandleCallback">
+            <summary>
+            由于Http协议自带请求与相应，所以此重写总是返回ture
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.HttpResponseTransmitter.CanHandleCallback">
+            <summary>
+            由于Http协议自带请求与相应，所以此重写总是返回ture
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.NetState">
+            <summary>
+            表示网络连接状态
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.NetState.Invalid">
+            <summary>
+            初始化状态，尚未连接远端或连接失败或没有远端连接进来
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.NetState.Accept">
+            <summary>
+            已接收远端的连接
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.NetState.Connecting">
+            <summary>
+            连接中
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.NetState.Connected">
+            <summary>
+            已连接
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.NetState.Disconnected">
+            <summary>
+            连接已断开
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.SocketOperation">
+            <summary>
+            当前Socket操作
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.SocketOperation.UserCall">
+            <summary>
+            用户执行的（包括调用代码或关闭进程等操作方式）
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.SocketOperation.Acccept">
+            <summary>
+            接受远端的连接
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.SocketOperation.Connnect">
+            <summary>
+            连接远端
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.SocketOperation.Send">
+            <summary>
+            向远端发送数据
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.SocketOperation.Receive">
+            <summary>
+            接收远端的数据
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.NetTransmitter">
+            <summary>
+            表示网络传输器，可在服务器进程间发送网络消息
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.NetTransmitter.RemotePort">
+            <summary>
+            获取当前连接的远端端口号
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.NetTransmitter.RemoteIp">
+            <summary>
+            获取当前连接的远端IP地址
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.NetTransmitter.LocalPort">
+            <summary>
+            获取当前连接的本地端口号
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.NetTransmitter.LocalIp">
+            <summary>
+            获取当前连接的本地IP地址
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.NetTransmitter.NeedParseData">
+            <summary>
+            获取是否需要处理TCP粘包。true表示需要。默认值为false
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.NetTransmitter.CanHandleCallback">
+            <summary>
+            获取此传输器实例是否可以自行处理消息回调（请求与回应的匹配），true表示可以，默认值为false
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.NetTransmitter.RPCCallbacksCount">
+            <summary>
+            获取RPC回调未被触发的数量
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.NetTransmitter.AverageNetworkDelay">
+            <summary>
+            平均网络延迟，单位：毫秒
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.NetTransmitter.InvokeCallBack(Tyrant.GameCore.Net.RPCExecManager.SerializeRPCReturnCallBack,Tyrant.GameCore.Net.RPCExecManager.FRPCReturnCallBack,System.Byte[],System.Int32,System.Boolean,System.Boolean,System.Exception)">
+            <summary>
+            有能力处理回调的实例（属性<see cref="P:Tyrant.GameCore.Net.NetTransmitter.CanHandleCallback"/>的值为true）调用此方法触发回调。
+            </summary>
+            <param name="serializeCallBack">反序列化返回值</param>
+            <param name="callback">要触发的回调。可从方法<see cref="M:Tyrant.GameCore.Net.NetTransmitter.SendBuffer(System.Byte[],System.Int32,System.Int32,Tyrant.GameCore.Net.RPCSerialize,Tyrant.GameCore.Net.RPCExecManager.SerializeRPCReturnCallBack,Tyrant.GameCore.Net.RPCExecManager.FRPCReturnCallBack)"/>的最后一个参数获得</param>
+            <param name="datas">回调数据</param>
+            <param name="dataLength">回调数据的字节长度</param>
+            <param name="connectionBroken">网络连接是否中断, 默认值为false</param>
+            <param name="isTimeOut">是否超时, 默认值为false</param>
+            <param name="e">引发的异常，默认值为null</param>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.NetTransmitter.OnReceiveData(System.Byte[],System.Int32)">
+            <summary>
+            继承者在接收到网络数据后调用此方法
+            </summary>
+            <param name="datas">数据数组</param>
+            <param name="length">数据数组的长度</param>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.NetTransmitter.OnReceiveData(System.IntPtr,System.Int32)">
+            <summary>
+            继承者在接收到网络数据后调用此方法
+            </summary>
+            <param name="pData">数据数组的指针</param>
+            <param name="length">数据数组的长度</param>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.NetTransmitter.ResetPacket">
+            <summary>
+            将数据包粘包解析器重置到初始状态，如不需要处理粘包则可忽略此方法
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.SequentialNetTransmitter">
+            <summary>
+            创建内部线程或使用指定的分发器顺序解析其收到的网络消息
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.DisconnectHandler">
+            <summary>
+            网络连接断开的委托
+            </summary>
+            <param name="netClient">断开的客户端实例</param>
+            <param name="op">断开时的操作</param>
+            <param name="error">因何错误而断开</param>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.NetConnection">
+            <summary>
+            表示服务器之间或客户端与服务器的网络连接。
+            </summary>
+        </member>
+        <member name="E:Tyrant.GameCore.Net.NetConnection.Disconnected">
+            <summary>
+            调用方法<see cref="M:Tyrant.GameCore.Net.NetConnection.Disconnect(Tyrant.GameCore.Net.SocketOperation,System.Net.Sockets.SocketError,System.Object)"/>或发生网络错误时触发的连接断开的事件
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.NetConnection.Connected">
+            <summary>
+            true表示连接，false表示断开。等价于<code><see cref="P:Tyrant.GameCore.Net.NetConnection.State"/>== <see cref="F:Tyrant.GameCore.Net.NetState.Connected"/></code>
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.NetConnection.MessageQueneLength">
+            <summary>
+            获取RPC消息队列的长度
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.NetConnection.OnDisconnected">
+            <summary>
+            连接断开后调用
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.NetConnection.Dispose">
+            <summary>
+            与<see cref="M:Tyrant.GameCore.Net.NetConnection.Disconnect"/>方法相同
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.NetConnection.Disconnect">
+            <summary>
+            断开当前连接
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.NetConnection.Disconnect(Tyrant.GameCore.Net.SocketOperation,System.Net.Sockets.SocketError,System.Object)">
+            <summary>
+            断开当前连接。当属性<see cref="P:Tyrant.GameCore.Net.NetConnection.State"/>的值不等于<see cref="F:Tyrant.GameCore.Net.NetState.Connected"/>时，此方法什么也不做，也不会触发相应的事件
+            </summary>
+            <param name="operation">因何操作而断开</param>
+            <param name="error">因何Socket错误而断开</param>
+            <param name="state">传递给<see cref="M:Tyrant.GameCore.Net.NetConnection.DisconnectCore(System.Object)"/>的参数</param>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.NetConnection.State">
+            <summary>
+            当前连接的状态
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.RPCError.InternalError">
+            <summary>
+            内部错误
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.RPCError.Reconnected">
+            <summary>
+            断线重连，需要客户端重新请求数据
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.RPCError.AccountIsOnline">
+            <summary>
+            该账号已经在线
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.RPCError.AccountNotFound">
+            <summary>
+            账号未找到
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.RPCError.InvalidConnectToken">
+            <summary>
+            无效的连接票据
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.RPCError.NetConnectBroken">
+            <summary>
+            网络连接中断
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.RPCError.Interrupted">
+            <summary>
+            某执行过程或任务被中断
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.RPCError.GetRoleButSingleRoleIsTrue">
+            <summary>
+            当HallServerBase.SingleRole设置为true时获取角色列表
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.RPCError.CreateRoleButSingleRoleIsTrue">
+            <summary>
+            当HallServerBase.SingleRole设置为true时创建角色
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.RPCError.DeleteRoleButSingleRoleIsTrue">
+            <summary>
+            当HallServerBase.SingleRole设置为true时删除角色
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.RPCError.CannotSendNetworkMessage">
+            <summary>
+            无法发送网络消息
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.RPCError.AutoRegistAcoountButCanNotGetLoginCredential">
+            <summary>
+            登录时自动注册的情况下无法获取登录凭据
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.RPCError.AlReadyInMap">
+            <summary>
+            角色已经在地图内了
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.ExcludeAttribute">
+            <summary>
+            消息序列化中排除该类型或属性
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.NotRPCAttribute">
+            <summary>
+            标记方法不是RPC方法
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.InternalRPCAttribute">
+            <summary>
+            标记该类为内部消息类
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.RPCParameterAttribute">
+            <summary>
+            标记RPC类以指定其属性
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.RPCParameterAttribute.IsConcurrent">
+            <summary>
+            获取或设置该RPC类是否并发执行
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.NotRPCHostAttribute">
+            <summary>
+            指示不在该类型中查找RPC方法
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.PropertyIndexAttribute">
+            <summary>
+            指示RPC类型中属性索引值，用于不同RPC版本之间的适配
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.RPCExecManager.IsDebug">
+            <summary>
+            获取或设置是否是调试模式。true表示是调试模式，RPC永不超时、网络连接不会因心跳超时而断开、客户端至Gate进程的长连接不会因接收不到身份验证而断开。默认值为false
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.RPCExecManager.AppTarget">
+            <summary>
+            获取当前服务器进程或客户端的标识
+            </summary>
+        </member>
+        <member name="E:Tyrant.GameCore.Net.RPCExecManager.GetUnknownValueTypeSerializerAction">
+            <summary>
+            为框架内部无法处理的类型设置序列化器。在该事件监听程序返回前务必调用<see cref="M:Tyrant.GameCore.Net.UnknownValueTypeSerializerSetter.SetSerializerForValueType``1(Tyrant.GameCore.Net.FieldSerializer{``0})"/>方法设置非空的序列化器对象，且保证泛型参数与属性<see cref="P:Tyrant.GameCore.Net.UnknownValueTypeSerializerSetter.ElementType"/>一致
+            </summary>
+        </member>
+        <member name="E:Tyrant.GameCore.Net.RPCExecManager.AdditionRPCTypes">
+            <summary>
+            可使用此事件提供额外的RPC类型
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.Net.RPCExecManager.RPCWait.IsAwaitAsync">
+            <summary>
+            true表示通过await异步等待远程调用
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.RPCExecManager.ExcuteRPCInThreadPool(System.Action)">
+            <summary>
+            在运行时线程池执行指定的Action，并应用了安全的同步上下文（不会因异常而崩溃）
+            </summary>
+            <param name="action">指定的Action</param>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.RPCSerialize">
+            <summary>
+            RPC类型如果包含复杂引用类型的成员，该复杂类型需继承此类以获得序列化能力
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.ERouteTarget">
+            <summary>
+            RPC调用的路由目标
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.RPCParameter">
+            <summary>
+            表示远程调用参数
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.RPCParameter.DefaultTimeOut">
+            <summary>
+            默认超时时间，影响所有实例，单位：毫秒。默认值为5000
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.RPCParameter.TimeOut">
+            <summary>
+            超时时间，单位：毫秒，默认值为5000
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.RPCParameter.IsSendFromClient">
+            <summary>
+            是否是客户端发送来的，回发给发送端时使用
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.RPCParameter.FRPCTypeReturnCallBack`1">
+            <summary>
+            远端对RPC调用的返回委托
+            </summary>
+            <typeparam name="T">远端的返回值类型</typeparam>
+            <param name="retValue">远端的返回值</param>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.RPCParameter.C2S_Call(Tyrant.GameCore.Net.Client)">
+            <summary>
+            在客户端将此RPC调用到指定的服务器
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.RPCParameter.Call(Tyrant.GameCore.Net.NetTransmitter)">
+            <summary>
+            使用指定的网络连接调用此RPC
+            </summary>
+            <param name="connection">要调用此RPC的网络连接</param>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.RPCParameter.Call(System.Collections.Generic.IEnumerable{Tyrant.GameCore.Net.NetTransmitter})">
+            <summary>
+            使用指定的网络连接迭代器中的每个连接调用此RPC
+            </summary>
+            <param name="connections">要调用此RPC的网络连接</param>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.ConcurrentPlayer">
+            <summary>
+            表示执行并发RPC时的角色
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.ConcurrentPlayer.AccountId">
+            <summary>
+            获取账号数据
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.ConcurrentPlayer.PlayerId">
+            <summary>
+            获取角色数据
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.ConcurrentPlayer.GateServerId">
+            <summary>
+            获取连接到Gate进程的服务器实例Id
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.ConcurrentPlayer.GateSlot">
+            <summary>
+            获取Gate进程内的连接Id
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.ConcurrentPlayer.MapData">
+            <summary>
+            获取所在地图或房间的信息，不在地图或房间内时为空应用
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.ConcurrentPlayer.SendRPCOnPlayerInstance(Tyrant.GameCore.Net.RPCParameter)">
+            <summary>
+            将指定的RPC实例发送给与此实例对应的非并发Hall进程上的角色
+            </summary>
+            <param name="arg"></param>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.ConcurrentPlayer.SendRPCToClient(Tyrant.GameCore.Net.RPCParameter,System.UInt64)">
+            <summary>
+            将指定的RPC实例发送给指定用户索引对应的客户端
+            </summary>
+            <param name="arg"></param>
+            <param name="accountId"></param>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.SyncKeyInValueDctionary`2.#ctor(System.Func{`1,`0})">
+            <summary>
+            使用键获取器创建新实例。
+            </summary>
+            <param name="keyGetter">键获取器，传入项，返回键</param>
+            <exception cref="T:System.ArgumentNullException">keyGetter为空引用并且<see cref="!:TValue"/>也没实现<see cref="T:Tyrant.GameCore.DataBinding.IKeyInValueDictionary`1"/>接口</exception>
+        </member>
+        <member name="M:Tyrant.GameCore.Net.SyncKeyInValueDctionary`2.#ctor(System.Func{`1,`0},System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            使用键获取器和初始集合创建新实例。
+            </summary>
+            <param name="keyGetter">键获取器，传入项，返回键</param>
+            <param name="collection">初始集合</param>
+            <exception cref="T:System.ArgumentNullException">keyGetter为空引用并且<see cref="!:TValue"/>也没实现<see cref="T:Tyrant.GameCore.DataBinding.IKeyInValueDictionary`1"/>接口</exception>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.RegistAccountParamExtra">
+            <summary>
+            继承此类以添加额外的注册账号参数
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.C2H_CheckLoginToken">
+            <summary>
+            用户进入普通服务器组时发送此消息，使用LoginToken到登录服务器组验证是否登录
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.C2H_EnterMap.RoleId">
+            <summary>
+            进入地图角色的Id。0代表自动创建角色
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.C2H_EnterMap.ExParamData">
+            <summary>
+            扩展数据
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.RPCMapParamExtra">
+            <summary>
+            进入地图时的地图扩展参数类
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.C2H_LeaveMapParam">
+            <summary>
+            离开地图 C2H_LeaveMap --> H2W_LeaveRoom  此函数是底层RPC函数/参数类,可使用Client(实例).LeaveMap、Client(实例).LeaveMapAsync函数调用
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.C2H_LeaveMapParam.MapParamExtra">
+            <summary>
+            协议扩展参数,上层需继承此类
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.ComputerInfo.CPUUtilization">
+            <summary>
+            CPU利用率
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Net.ComputerInfo.NetworkApdaterInfo">
+            <summary>
+            网卡信息
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.Net.H2C_ReconnectParam">
+            <summary>
+            重连
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.ObjectPoolSettings.CheckExistInPoolWhenGiveBack">
+            <summary>
+            当调用<see cref="M:Tyrant.GameCore.ObjectPool`1.GiveBack(`0)"/>时是否检查对象在池中已存在。默认值为fales
+            </summary>
+        </member>
+        <member name="F:Tyrant.GameCore.ObjectPoolSettings.ObjectPoolDampingInterval">
+            <summary>
+            所有<see cref="T:Tyrant.GameCore.ObjectPool`1"/>池的衰减间隔时间（单位：秒），小于0为不开启衰减模式
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.ObjectPool`1">
+            <summary>
+            对象缓存池
+            </summary>
+            <typeparam name="T">可以使用<see cref="T:Tyrant.Core.ObjectPoolAttribute"/>来设置对象池的基础属性，否则将使用<see cref="T:Tyrant.GameCore.ObjectPoolSettings"/>的通用设置。</typeparam>
+        </member>
+        <member name="M:Tyrant.GameCore.ObjectPool`1.InitObjectPool(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            初始化对象池
+            </summary>
+            <param name="initValue">初始化数量</param>
+            <param name="addValue">每次扩充数量</param>
+            <param name="maxValue">最大连接池数量</param>
+            <param name="dampingInterval">衰减间隔时间</param>
+        </member>
+        <member name="M:Tyrant.GameCore.ObjectPool`1.GiveBack(`0)">
+            <summary>
+            将指定对象归还至对象池
+            </summary>
+            <param name="obj">要归还至对象池的对象</param>
+        </member>
+        <member name="T:Tyrant.GameCore.Performance">
+            <summary>
+            性能类
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Performance.StartTime">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Performance.IntervalTime">
+            <summary>
+            间隔时间（单位：毫秒）
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.Performance.Start(System.String)">
+            <summary>
+            性能计时开始
+            </summary>
+        </member>
+        <member name="M:Tyrant.GameCore.Performance.Stop">
+            <summary>
+            性能计时结束
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.PerformanceData">
+            <summary>
+            表示性能数据
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.PerformanceData.Name">
+            <summary>
+            性能统计项名称
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.PerformanceData.Min">
+            <summary>
+            耗时最小值，单位：毫秒
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.PerformanceData.Max">
+            <summary>
+            耗时最大值，单位：毫秒
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.PerformanceData.Sum">
+            <summary>
+            耗时总计，单位：毫秒
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.PerformanceData.Num">
+            <summary>
+            统计数量
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.PerformanceAllSwitch">
+            <summary>
+            性能总开关类
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.PerformanceAllSwitch.AllOnOff">
+            <summary>
+            性能统计总开关，true表示开启，false表示关闭
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.PerformanceAllSwitch.PerformanceLevelSwitches">
+            <summary>
+            性能统计项开关列表
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.PerformanceLevelSwitch">
+            <summary>
+            性能项开关类
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.PerformanceLevelSwitch.Name">
+            <summary>
+            性能统计项名称
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.PerformanceLevelSwitch.On_Off">
+            <summary>
+            性能统计项开关，true表示开启，false表示关闭
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.Properties.Resources">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.Culture">
+            <summary>
+              重写当前线程的 CurrentUICulture 属性，对
+              使用此强类型资源类的所有资源查找执行重写。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.Arg1DirectoryNotFound">
+            <summary>
+              查找类似 Tyrant.Tools.DesignDataTranslator:源目录不存在path=[{0}] 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.ArgOuputDirectoryNotFoundAndCanNotCreate">
+            <summary>
+              查找类似 Tyrant.Tools.DesignDataTranslator:输出目录不存在且不能创建，可能的原因：{0} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.Begin">
+            <summary>
+              查找类似 Tyrant.Tools.DesignDataTranslator:开始 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.CanNotAddDeletedRowExceptionMsg">
+            <summary>
+              查找类似 不支持添加从某个表中移除的数据库实体行对象。 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.CanNotChangePrimaryKeyValueExceptionMsg">
+            <summary>
+              查找类似 拥有者对象所表示的数据库实体行已经在某个数据表实体中 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.CanNotGetDataStream">
+            <summary>
+              查找类似 无法获取策划数据类型“{0}”对应的数据流 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.DatabaseColumnEntityTypeNotSupportExceptionMsg">
+            <summary>
+              查找类似 数据库实体列类型仅支持除了Decimal以外的其他的基础数据类型 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.DataBindingConverterTypeConstructionError">
+            <summary>
+              查找类似 转换器类型必须具有公共无参构造函数 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.DataBindingConverterTypeInvalid">
+            <summary>
+              查找类似 转换器类型必须实现接口“{0}” 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.DataBindingItemTemplateSelectorTypeConstructionError">
+            <summary>
+              查找类似 项模板选择器的类型必须具有公共无参构造函数 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.DataBindingItemTemplateSelectorTypeInvalid">
+            <summary>
+              查找类似 项模板选择器的类型必须实现接口“{0}” 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.DeleteFileDictionary">
+            <summary>
+              查找类似 Tyrant.Tools.DesignDataTranslator:删除{0}为“{1}”成功。 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.DesignDataInstanceReadOnly">
+            <summary>
+              查找类似 这个策划数据实例是只读的。 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.DesignDataTranslatorIntegrationCanNotFindToolFileExcption">
+            <summary>
+              查找类似 参数&quot;{0}&quot;所指定的目录下找不到要运行工具文件&quot;{1}&quot; 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.DesignDataTranslatorIntegrationToolDirectoryExcption">
+            <summary>
+              查找类似 找不到名为&quot;{0}&quot;的环境变量，请指定参数&quot;{1}&quot;的值。 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.DesingerCodeTypeCount">
+            <summary>
+              查找类似 Tyrant.GameCore:已找到策划数据类型{0}个 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.End">
+            <summary>
+              查找类似 Tyrant.Tools.DesignDataTranslator:结束。总共用时：{0} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.ExcelConfigFileInValid">
+            <summary>
+              查找类似 Tyrant.Tools.DesignDataTranslator:Excel配置文件（.gzg）与对应Excel文件不匹配或没有通过数据检查，对此文件的处理已终止。Excel文件：{0}，Sheet名称：{1} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.ExcelConfigFileNotFound">
+            <summary>
+              查找类似 Tyrant.Tools.DesignDataTranslator:Excel文件“{0}”的配置文件（.gzg）不存在 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.ExcelConfigFileUnMatchExcel">
+            <summary>
+              查找类似 Tyrant.Tools.DesignDataTranslator:Excel配置文件（.gzg）“{0}”中没有名为“{1}”的Sheet，请重新对应的Excel文件生成该配置文件。 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.ExcelConfigFormatInvalid">
+            <summary>
+              查找类似 Tyrant.Tools.DesignDataTranslator:Excel文件“{0}”的配置文件（.gzg）格式不正确，请重新生成 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.ExcelFilesCount">
+            <summary>
+              查找类似 &lt;c:{0}&gt;Tyrant.Tools.DesignDataTranslator:共有{0}个Excel文件 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.FileNotOutOfData">
+            <summary>
+              查找类似 Tyrant.Tools.DesignDataTranslator:文件”{0}“最新 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.GetValueNotSupportExceptionMsg">
+            <summary>
+              查找类似 此属性不为虚拟属性，但用构造函数创建此实例时getValueCallback参数为空引用 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.HandleOneExcelFileFinish">
+            <summary>
+              查找类似 &lt;p&gt;Tyrant.Tools.DesignDataTranslator:Excel文件“{0}”处理完毕 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.LoadDesignerCodeTypeException">
+            <summary>
+              查找类似 Tyrant.GameCore:加载策划数据类型异常。类型：{0}，异常：{1} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.LoadDesignerDataEnd">
+            <summary>
+              查找类似 Tyrant.GameCore:加载策划数据完成。共加载数据类型{0}个。共用时{1} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.LoadDesignerDataEndException">
+            <summary>
+              查找类似 Tyrant.GameCore:加载策划数据完成时异常：{0} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.LoadingDesignerDataType">
+            <summary>
+              查找类似 Tyrant.GameCore:正在加载策划数据类型“{0}” 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.LoadingDesignerDataTypeFinish">
+            <summary>
+              查找类似 Tyrant.GameCore:加载策划数据类型“{0}”完成，实例数量：{1} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.LoadingDesignerDataUnMathCode">
+            <summary>
+              查找类似 Tyrant.GameCore:发现策划数据与生成的代码不匹配。策划数据类型：{0}。读取出的数值可能不正确。 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.MessageGenericTypeNotMactch">
+            <summary>
+              查找类似 检测到消息类型&quot;{0}&quot;的基类的泛型参数并不是自身，是有意这样做的吗？ 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.NotConnectServer">
+            <summary>
+              查找类似 尚未与服务器连接成功，不能发送任何消息 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.OutputDirNotExistsAndCanNotCreat">
+            <summary>
+              查找类似 输出路径“{0}”不存在且不能被创建，请检查路径名称是否合法。 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.OwnerObjCanNotBeNull">
+            <summary>
+              查找类似 参数{0}不能为空引用 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.OwnerObjTypeInvalid">
+            <summary>
+              查找类似 {0}的类型必须是拥有者类型，或是拥有者类型的子类。{0}的类型:“{1}”,拥有者类型:“{2}” 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.OwnerTypeCanNotBeNull">
+            <summary>
+              查找类似 拥有者类型不能为空引用 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.OwnerTypeMustBeReferenceType">
+            <summary>
+              查找类似 拥有者类型必须为引用类型 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.PopertyNameInvalid">
+            <summary>
+              查找类似 属性名称不能为空引用或空字符串 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.PropertyTypeCanNotBeNull">
+            <summary>
+              查找类似 属性类型不能为空引用 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.PropertyValueCanNotBeNull">
+            <summary>
+              查找类似 属性类型为值类型时，{0}不能为空引用 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.PropertyValueTypeInvalid">
+            <summary>
+              查找类似 {0}的类型必须是属性类型，或是属性类型的子类 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.ReadExcelFileFailed">
+            <summary>
+              查找类似 Tyrant.Tools.DesignDataTranslator:读取Excel文件失败，文件名：{0}，信息：{1} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.SavingFile">
+            <summary>
+              查找类似 Tyrant.Tools.DesignDataTranslator:正在生成文件”{0}“ 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.SetValueNotSupportExceptionMsg">
+            <summary>
+              查找类似 此属性不为虚拟属性，但用构造函数创建此实例时setValueCallback参数为空引用 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.SheetNameRepeat">
+            <summary>
+              查找类似 Tyrant.Tools.DesignDataTranslator:发现有名为“{0}”的Sheet重复出现，请修改其中之一的名称 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.SourceCollectionItemCanNotBeNull">
+            <summary>
+              查找类似 数据源集合中的项不能为空引用 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.TyrantTemplateBuildFailure">
+            <summary>
+              查找类似 策划模板创建生成失败,是否调用SetDataXmlFileArg方法。 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.UseMutiThread">
+            <summary>
+              查找类似 使用多线程 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.UseSingleThread">
+            <summary>
+              查找类似 使用单线程 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Tyrant.GameCore.Properties.Resources.WaitOtherProcessesFinish">
+            <summary>
+              查找类似 Tyrant.Tools.DesignDataTranslator:其他进程已经开始执行生成过程，正在等待其结束 的本地化字符串。
+            </summary>
+        </member>
+        <member name="T:Tyrant.GameCore.PersistentInMemoryAttribute">
+            <summary>
+            表示该数据表保持在内存中
+            </summary>
+        </member>
+    </members>
+</doc>
